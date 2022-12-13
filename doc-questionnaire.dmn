@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dmn:definitions xmlns:dmn="http://www.omg.org/spec/DMN/20180521/MODEL/" xmlns="https://kiegroup.org/dmn/_4FE94391-55CB-481F-821A-21755E153554" xmlns:feel="http://www.omg.org/spec/DMN/20180521/FEEL/" xmlns:kie="http://www.drools.org/kie/dmn/1.2" xmlns:dmndi="http://www.omg.org/spec/DMN/20180521/DMNDI/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="_6E9BB9AB-AE07-45AD-91E2-F1D96B48B9A8" name="document-questionnaire" typeLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" namespace="https://kiegroup.org/dmn/_4FE94391-55CB-481F-821A-21755E153554">
+  <dmn:extensionElements/>
+  <dmn:itemDefinition id="_F26C9C8A-BA5B-41AC-8419-91AC5D739DFC" name="tVerification" isCollection="false">
+    <dmn:itemComponent id="_9D7A2617-D2A1-42C4-9F00-8DFA96CEB68C" name="country" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+      <dmn:allowedValues kie:constraintType="enumeration" id="_4F8AD227-EB7D-4EBC-9A88-6F301BBFF490">
+        <dmn:text>"United Kingdom", "Republic of Ireland"</dmn:text>
+      </dmn:allowedValues>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_4D259E33-2E6E-403D-82EC-71EB57B98F84" name="legalEntityCounterPart" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+      <dmn:allowedValues kie:constraintType="enumeration" id="_B89606FE-BFAA-49BE-89A3-DBBF6932ADAC">
+        <dmn:text>"Worldpay UK", "WorldPay B.V"</dmn:text>
+      </dmn:allowedValues>
+    </dmn:itemComponent>
+  </dmn:itemDefinition>
+  <dmn:itemDefinition id="_99947A1F-9046-4765-9905-BF8F62D09BD8" name="tQuestionnaire" isCollection="false">
+    <dmn:itemComponent id="_BB339F20-1656-4DF7-BD78-EC95E41A6AF7" name="multiReferenceIds" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+      <dmn:allowedValues kie:constraintType="enumeration" id="_F1FF536A-C8B4-4D6A-9D44-0618BC02AFAE">
+        <dmn:text>"100001"</dmn:text>
+      </dmn:allowedValues>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_7129A488-0F17-47EB-B4CC-7C6993519B71" name="referenceId" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+      <dmn:allowedValues kie:constraintType="enumeration" id="_921DF117-1695-479F-9397-94D36BACF9C3">
+        <dmn:text>"100000", "100002", "100003"</dmn:text>
+      </dmn:allowedValues>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_FFCAF70D-AF65-44D8-A5E6-2222A3ABC4CE" name="question" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+      <dmn:allowedValues kie:constraintType="enumeration" id="_190D8045-8054-4065-8A20-8B6DCA2CBC92">
+        <dmn:text>"What is the incorporation date of the entity in the application? [&lt;i&gt;For Sole Traders, please consider date the company started trading&lt;/i&gt;]", "Is the incorporation date recent enough to require additional documentation? (i.e. within the last 30 days)", "Is the business/entity listed as 'Dissolved'? (Y/N)"</dmn:text>
+      </dmn:allowedValues>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_5EA9BD21-F4FB-4037-8D6C-40D1FC167E4E" name="allowedValues" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+      <dmn:allowedValues kie:constraintType="enumeration" id="_B8C342A9-754D-4BD3-BEC5-CBB15994E355">
+        <dmn:text>"Y", "N", "Date"</dmn:text>
+      </dmn:allowedValues>
+    </dmn:itemComponent>
+  </dmn:itemDefinition>
+  <dmn:itemDefinition id="_F828E6B5-83C7-4CA8-9871-BAE57118C8C0" name="tResult" isCollection="false">
+    <dmn:typeRef>Any</dmn:typeRef>
+  </dmn:itemDefinition>
+  <dmn:itemDefinition id="_ED7E228C-BB35-414C-9CD6-A0E63259E4CB" name="tValues" isCollection="true">
+    <dmn:typeRef>string</dmn:typeRef>
+  </dmn:itemDefinition>
+  <dmn:itemDefinition id="_1B201EE3-8B3D-4E4B-AC73-E00B42045E39" name="tReferenceIds" isCollection="true">
+    <dmn:typeRef>string</dmn:typeRef>
+  </dmn:itemDefinition>
+  <dmn:inputData id="_4DCE610F-D9B3-43EB-AB07-CC68D0C939F4" name="verification">
+    <dmn:extensionElements/>
+    <dmn:variable id="_BD9ACE5D-1619-4984-AFBB-37C77815AC11" name="verification" typeRef="tVerification"/>
+  </dmn:inputData>
+  <dmn:decision id="_7E44CC9C-5A00-40DE-A7FC-76B9C798D99A" name="questionnaire">
+    <dmn:extensionElements/>
+    <dmn:variable id="_16FDA764-D50F-48A2-B435-36A34D69F766" name="questionnaire" typeRef="tQuestionnaire"/>
+    <dmn:informationRequirement id="_A6373982-E566-42D2-B22C-DBD653A4FFB5">
+      <dmn:requiredInput href="#_4DCE610F-D9B3-43EB-AB07-CC68D0C939F4"/>
+    </dmn:informationRequirement>
+    <dmn:decisionTable id="_F8DDC7BB-03D0-4B38-9EC3-192C78A55CE1" hitPolicy="RULE ORDER" preferredOrientation="Rule-as-Row">
+      <dmn:input id="_9D73BF33-F4A6-4FAF-B948-BF3B56A0DAD2">
+        <dmn:inputExpression id="_BFADFB3F-5238-4D8C-A206-D4672FEE1BBF" typeRef="string">
+          <dmn:text>verification.country</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:input id="_AED313A2-7CFA-41DA-A1D4-EB0A446145BC">
+        <dmn:inputExpression id="_CFE1F6FF-41D7-40B3-A422-C5CC83CF95B4" typeRef="string">
+          <dmn:text>verification.legalEntityCounterPart</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:output id="_F580397D-42D3-45F5-BD5A-D6FA44CCAA45" name="referenceId" typeRef="string"/>
+      <dmn:output id="_6C463F0F-33CF-4FFC-AB28-0A467613BE4D" name="question" typeRef="string"/>
+      <dmn:output id="_4BB91C28-A853-4F05-93D8-3BC819496038" name="allowedValues" typeRef="tValues"/>
+      <dmn:output id="_4D95F4E6-C35D-4F49-8DF3-AC477E0C77BB" name="multiReferenceIds" typeRef="tReferenceIds"/>
+      <dmn:annotation name=""/>
+      <dmn:rule id="_439CDAED-086E-4525-84E0-D3F1A89F0654">
+        <dmn:inputEntry id="_B61B4893-83FA-4B56-8F62-4D17E72157F0">
+          <dmn:text>"Republic of Ireland"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_AA5416AA-AD0C-4442-9592-6E65CE6C1983">
+          <dmn:text>"WorldPay B.V"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_C20C42FC-E1F8-4DCF-BD01-02FCB3879153">
+          <dmn:text>"100000"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_38BBEEFC-2DEF-4C3F-AC40-56610BB822B3">
+          <dmn:text>"What is the incorporation date of the entity in the application? [&lt;i&gt;For Sole Traders, please consider date the company started trading&lt;/i&gt;]"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_AC08A8E5-71B6-4CB6-9DB6-8A7F740467A2">
+          <dmn:text>["Date"]</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_070D644B-868D-4C24-99FC-9575E58696AD">
+          <dmn:text>"100001"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_A7DC5D36-E43B-46AB-B48E-F3EE0D69D1B2">
+        <dmn:inputEntry id="_71859F41-82CC-4DED-B480-84C22693A3F1">
+          <dmn:text>"Republic of Ireland"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_79FBE185-D162-4511-A035-4C98D2B2EADD">
+          <dmn:text>"WorldPay B.V"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_3F52A9A2-AB93-4058-A965-A2C1AA853D62">
+          <dmn:text>"100001"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_4C50CB53-CE61-4737-B257-8C41A710DEDB">
+          <dmn:text>"Is the incorporation date recent enough to require additional documentation? (i.e. within the last 30 days)"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_BFA554C6-569E-42FE-A186-8E9B3F2C5BEE">
+          <dmn:text>["Y","N"]</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_3BA88EF2-0371-4F45-86EC-3EAA71E54230">
+          <dmn:text/>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_9EC6FB86-108B-4538-9FD4-08898425F325">
+        <dmn:inputEntry id="_66CAF6C6-CD13-4CD2-88FE-6168C368EBF4">
+          <dmn:text>"United Kingdom","Republic of Ireland"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_6093D615-9E4B-4BB9-BFE0-72EF902D556E">
+          <dmn:text>"Worldpay UK","WorldPay B.V"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_6D5C7F3F-C070-454F-B6F2-F3E39A0A71A5">
+          <dmn:text>"100002"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_2C35964E-A838-4790-9A22-5F039F876B6E">
+          <dmn:text>"Is the business/entity listed as 'Dissolved'? (Y/N)"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_880F86AE-7A3D-4033-9815-A6FE07F012E9">
+          <dmn:text>["Y","N"]</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_50550D89-2EBE-48D7-AFB1-958700AD3339">
+          <dmn:text/>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_E709DB86-77D7-485A-A7FA-BCFA3D5AA0DD">
+        <dmn:inputEntry id="_4884C923-286C-467D-8831-C43371F5720B">
+          <dmn:text>"United Kingdom","Republic of Ireland"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_2B5D4A19-2B96-4A5D-84E2-5C0108AB5C77">
+          <dmn:text>"Worldpay UK","WorldPay B.V"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_210C555C-C0DA-4979-A97E-52B7CFBBCCF3">
+          <dmn:text>"100003"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_CA56B107-1CE8-4FA9-97B2-9B48C2A1B7A0">
+          <dmn:text>"Has the applicant provided an accessible website? (Y/N)"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_AD3A0C5B-F154-4DBE-8D21-E8B4C2A3CC42">
+          <dmn:text>["Y","N"]</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_57F1ACC1-38A0-42DD-BB68-A449D0A286BC">
+          <dmn:text/>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_1DA3F903-BD28-46E6-8B1D-60A6C54430F5">
+        <dmn:inputEntry id="_B7B4E9D5-68AC-4DF5-8C69-2CF55754118A">
+          <dmn:text>"United Kingdom","Republic of Ireland"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_2939FD21-5801-4505-93E3-C81F57AE8538">
+          <dmn:text>"Worldpay UK","WorldPay B.V"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_DEA47434-BF4C-4233-9271-48EEF4439460">
+          <dmn:text>"100004"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_968626D7-7DA8-4559-811D-DFCB31F7F3E2">
+          <dmn:text>"Has the applicant provided a UK contract? (Y/N)"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_497BA8C8-261D-4D3B-AEAB-0B462F4AB1DD">
+          <dmn:text>["Y","N"]</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_E32C96D6-6CE1-4378-BD76-03E3B13FDC6B">
+          <dmn:text/>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_EBD429DB-B624-4C00-8E38-2CF28222836A">
+        <dmn:inputEntry id="_9DD54AA8-487F-4BCD-B142-54130FB93AA9">
+          <dmn:text>"Republic of Ireland"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_5010A639-B292-4AA8-9559-10C05A02EA0D">
+          <dmn:text>"WorldPay B.V"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_47B0E2AD-2187-4617-87B2-1685988739A8">
+          <dmn:text>"100005"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_D2D19CEE-B957-4DD1-8B5D-F158D8699F14">
+          <dmn:text>"Is there a suitable online footprint? (Y/N) [&lt;i&gt;note: NOT their website - Google results, Yell reviews, etc. are a valid online presence&lt;/i&gt;"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_BFF96380-EC5B-4DFF-9022-F6EDACDA5A93">
+          <dmn:text>["Y", "N"]</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_F49FEDCD-5D36-48C0-A435-A28D5A46D3EE">
+          <dmn:text/>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_32B840C1-7C57-455E-AEFE-C524D2CF8D8D">
+        <dmn:inputEntry id="_1E1EBC2A-8F44-4D1B-A31D-CCE5523E9A35">
+          <dmn:text>"United Kingdom","Republic of Ireland"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_4545A746-1E85-44FA-94EC-74FE3AB9B1E1">
+          <dmn:text>"Worldpay UK","WorldPay B.V"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_9F92964A-38A7-4D6F-A7F5-BB8C41DF8D0A">
+          <dmn:text>"100006"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_093262E8-E653-4FA8-9790-8A71DC2FA80F">
+          <dmn:text>"Is the entity's address a residential address? (Y/N)"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_9819B649-59C0-4CB2-B77B-5E1697EDA303">
+          <dmn:text>["Y","N"]</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_382ABEFE-B202-4063-931A-AA9954FD8DAE">
+          <dmn:text>["100007(Y)","100008(N)"]</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_409AA6E7-59C0-47A6-81D3-8E0E171E3BD8">
+        <dmn:inputEntry id="_CE0A5BB7-1D28-419A-A5B7-1F96DDCB6B05">
+          <dmn:text>"United Kingdom","Republic of Ireland"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_17AFF6A4-F914-4764-991D-5F1E9BD0BAF9">
+          <dmn:text>"Worldpay UK","WorldPay B.V"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_09FEF643-174C-4C7D-A7C1-6391EA1C3028">
+          <dmn:text>"100007"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_C60B5CC3-CA8F-40FC-97AC-83A09BF2CE76">
+          <dmn:text>"Is the nature of business appropriate for a residential address? (Y/N)(e.g. Car sales cannot trade from a residential address)"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_7C12FBE4-D3C7-4CA9-92F7-A7E9D64055AE">
+          <dmn:text>["Y","N"]</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_78DBBB31-8554-45F5-99DA-1EA8F45BC33C">
+          <dmn:text/>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_35348DD1-6455-45E0-9908-BAF1A83040E2">
+        <dmn:inputEntry id="_D4E2647C-D8F9-452A-A693-686F1DDFB431">
+          <dmn:text>"United Kingdom","Republic of Ireland"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_FF58921F-1D56-4935-8ACC-C325E79C2051">
+          <dmn:text>"Worldpay UK","WorldPay B.V"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_ACFC155E-6EB8-405B-B346-732B130216F5">
+          <dmn:text>"100008"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_6D961D97-5BDD-475A-A0BF-38771918E801">
+          <dmn:text>"(Sub question only applicable to residential addresses)"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_BB679784-53ED-4E21-BE74-3EED7CE21472">
+          <dmn:text>["Y","N"]</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_74AE7494-123E-4540-941C-80A79E7103A2">
+          <dmn:text/>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_8DC596BF-60AF-4538-8484-2858C6A8CD8E">
+        <dmn:inputEntry id="_2CA9BC7F-BD2B-4EA5-9E16-F94D4A4D283A">
+          <dmn:text>"United Kingdom","Republic of Ireland"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_B5BF2B4E-07CC-4310-8999-FB62F9F880F9">
+          <dmn:text>"Worldpay UK","WorldPay B.V"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_854E530A-2DFF-40AB-9878-1BF7F74FC02C">
+          <dmn:text>"100009"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_D5CD6293-63D2-4235-9562-B37CA36784EB">
+          <dmn:text>"Is the applicant clear about the nature of their business? (Y/N)"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_8C3B4959-AD10-4A78-8A33-9ACD601A36AB">
+          <dmn:text>["Y","N"]</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_C7861C2B-EEC9-45EE-A6D4-D526D5AF4AAF">
+          <dmn:text/>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_37BE2BF5-E979-4942-9AF4-80AEB124C738">
+        <dmn:inputEntry id="_CE0F9401-E855-49EE-9D1C-90611D50AC22">
+          <dmn:text>"United Kingdom","Republic of Ireland"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_A1BE6F38-81E1-4A33-AD33-1957C351AA20">
+          <dmn:text>"Worldpay UK","WorldPay B.V"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_59921B39-560F-4D33-910B-B81545518CCF">
+          <dmn:text>"100010"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_A3448922-6019-4392-AD38-80A560189AE7">
+          <dmn:text>"Is the application for Virtual Terminal (VT) &lt;u&gt;only&lt;u&gt;?"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_3750F076-5BB1-425E-9506-A7307CEF5581">
+          <dmn:text>["Y","N"]</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_24E29488-CEC0-450E-8C14-679727BA8D14">
+          <dmn:text/>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_FF9415B8-A11C-46E1-8CAE-A4DE56A27AAE">
+        <dmn:inputEntry id="_016FF7F4-2F92-496C-98D7-6603EDCF6EAF">
+          <dmn:text>"United Kingdom"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_4E6D5DAC-2962-4BCD-AEC5-D2B07CFCB309">
+          <dmn:text>"Worldpay UK"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_403EE4B2-965F-4DB2-95F2-6309655AEEE2">
+          <dmn:text>"100011"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_7B945129-2916-483B-8BFD-AA8756D22F52">
+          <dmn:text>"If photographic evidence is provided, are the photos non-generic &amp; showing signage with the company name? (Y/N)"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_C6FDFE3B-4203-4E8F-9BBF-6C8A2D6A726D">
+          <dmn:text>["Y","N"]</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_C5F7F7AF-DD3C-42B8-B1F3-28E172ACC47C">
+          <dmn:text/>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_30D25658-169F-4161-AD03-1F9B27DEC781">
+        <dmn:inputEntry id="_5DE0A28A-D9BF-4703-81D9-8EC7FFA6B12A">
+          <dmn:text>"Republic of Ireland"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_4459249C-1E33-4529-8F1F-E919EF13BF62">
+          <dmn:text>"WorldPay B.V"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_62676F45-6288-4BE4-8018-F8D8F74214E6">
+          <dmn:text>"100012"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_5AB40A1D-87F8-48CB-8B0D-F4EC17C0A255">
+          <dmn:text>"Enter sort code"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_B2B708F6-7EF0-44B2-AE3E-DD2EA4B8AA8F">
+          <dmn:text>[]</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_CD65386C-A0B5-4C88-BE33-84A826595C09">
+          <dmn:text/>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_7AE308E9-B7C8-4978-90B5-569DBCDE7AC3">
+        <dmn:inputEntry id="_F9CF271B-E369-4E7B-97F1-FD7335FC2D42">
+          <dmn:text>"Republic of Ireland"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_B7FA303D-A93E-4CF2-A6A8-C66C51AF1754">
+          <dmn:text>"WorldPay B.V"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_7217825C-C573-4F7D-96E1-CDF8AEA671BF">
+          <dmn:text>"100013"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_946EBE94-CFCF-4753-8B3E-ECB704743B27">
+          <dmn:text>"(Question only applicable to High Risk MCC's - see section C below)"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_F663281C-43D7-4520-919E-88A21EEE6D4F">
+          <dmn:text>["Y","N"]</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_A86E4999-2C13-43CE-BDD5-64B281AFEF19">
+          <dmn:text/>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+    </dmn:decisionTable>
+  </dmn:decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="_63648BD1-0646-4712-B64A-BAF207E89ED2" name="DRG">
+      <di:extension>
+        <kie:ComponentsWidthsExtension>
+          <kie:ComponentWidths dmnElementRef="_F8DDC7BB-03D0-4B38-9EC3-192C78A55CE1">
+            <kie:width>50</kie:width>
+            <kie:width>223</kie:width>
+            <kie:width>224</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>756</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>195</kie:width>
+            <kie:width>100</kie:width>
+          </kie:ComponentWidths>
+        </kie:ComponentsWidthsExtension>
+      </di:extension>
+      <dmndi:DMNShape id="dmnshape-drg-_4DCE610F-D9B3-43EB-AB07-CC68D0C939F4" dmnElementRef="_4DCE610F-D9B3-43EB-AB07-CC68D0C939F4" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="308" y="192" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_7E44CC9C-5A00-40DE-A7FC-76B9C798D99A" dmnElementRef="_7E44CC9C-5A00-40DE-A7FC-76B9C798D99A" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="308" y="93" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="dmnedge-drg-_A6373982-E566-42D2-B22C-DBD653A4FFB5-AUTO-TARGET" dmnElementRef="_A6373982-E566-42D2-B22C-DBD653A4FFB5">
+        <di:waypoint x="358" y="217"/>
+        <di:waypoint x="358" y="143"/>
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</dmn:definitions>
